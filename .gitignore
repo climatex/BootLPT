@@ -1,0 +1,14 @@
+# Object files
+*.o
+*.obj
+
+# Precompiled headers
+*.pch
+*.gch
+
+# Misc
+*.bak
+
+# Mac
+applet/
+*.DS_Store

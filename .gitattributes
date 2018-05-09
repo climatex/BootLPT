@@ -1,0 +1,14 @@
+# Markdown
+.md text eol=lf
+
+# Source code
+*.cpp text eol=crlf
+*.c text eol=crlf
+*.h text eol=crlf
+*.asm text eol=crlf
+
+# Binary files
+*.bin binary
+*.exe binary
+*.com binary
+
