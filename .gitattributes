@@ -1,5 +1,5 @@
 # Markdown
-.md text eol=lf
+*.md text eol=lf
 
 # Source code
 *.cpp text eol=crlf

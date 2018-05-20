@@ -39,7 +39,7 @@ SIGNATURE1		db 055h		; 55h
 SIGNATURE2		db 0AAh		; AAh
 SIGNATURE3		db ROM_SIZE * 2	; ROM size in 0,5 kB chunks
 jmp short start				; One-byte short jump
-CHECKSUM		db 0		; ! Checksum byte (BOOTLPT.BIN offs. 5). PATCH after compiling.
+CHECKSUM		db 0		; !!! Checksum byte (BOOTLPT.BIN offs. 5). PATCH after compiling.
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Entry point ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -55,10 +55,10 @@ start:
 	
 	sti				; Enable them again.
 	
-	mov si,INTERVAL			; 'Press any key for BootLPT/86...'
+	lea si,[INTERVAL]		; 'Press any key for BootLPT/86...'
 	call print
 	
-	or ax,ax			; AX=0, INT 1Ah: Get tick count (circa 18.2 per sec)
+	xor ax,ax			; AX=0, INT 1Ah: Get tick count (circa 18.2 per sec)
 	int 1Ah				; Returns two words in CX:DX. Original low WORD kept in DX.
 @@:
 	push dx				; DX on stack contains the low order tickcount. CX discarded.
@@ -93,9 +93,13 @@ key_pressed:				; We wish to continue with the ROM.
 	xor ax,ax			; Also discard the keypress...
 	int 16h				; And continue with the ROM.
 	
+	cli				; Hold your breaths...
+	
 	mov ax,STACK_SEG		; Set stack pointer
 	mov ss,ax
 	mov sp,STACK_OFS
+	
+	sti				; Okay, interrupts enabled again
 	
 	mov ax,0003			; Set video mode to 80x25
 	int 10h
