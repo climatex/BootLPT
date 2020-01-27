@@ -1,4 +1,4 @@
-BootLPT/86
+## BootLPT/86
 
 A project that lets you boot any PC, based on an 8086/8088 and up, from a standard parallel port!
 
@@ -6,7 +6,7 @@ A project that lets you boot any PC, based on an 8086/8088 and up, from a standa
 
 ## Who? What? Parallel port? And why?
 
-Check out my *[website article](http://boginjr.com/it/sw/dev/bootlpt-86/)* to learn more!
+Check out my [website article](http://boginjr.com/it/sw/dev/bootlpt-86/) to learn more!
 
 
 
